@@ -3,6 +3,7 @@ package utilities;
 import io.appium.java_client.android.AndroidDriver;
 import listeners.SuiteListeners;
 import listeners.TestListeners;
+import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -61,6 +62,14 @@ public class BaseTest {
         desiredCapabilities.setCapability("appium:app", fileAPK.getAbsolutePath());
 
         return desiredCapabilities;
+    }
+
+    protected void sleep(int timeSeconds) {
+        try {
+            Thread.sleep(timeSeconds * 1000);
+        } catch (InterruptedException interruptedException) {
+            Logs.error("InterruptedException: %s", interruptedException);
+        }
     }
 
 }
