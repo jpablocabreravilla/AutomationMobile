@@ -26,6 +26,9 @@ public class BaseTest {
         softAssert = new SoftAssert();
         Logs.debug("Inicializando el driver");
         driver = initDriver();
+
+        Logs.debug("Asignando el driver al driver provider");
+        new DriverProvider().set(driver);
     }
 
     @AfterMethod(alwaysRun = true)
