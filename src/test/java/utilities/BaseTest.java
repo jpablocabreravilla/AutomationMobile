@@ -13,6 +13,7 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 @Listeners({TestListeners.class, SuiteListeners.class})
 public class BaseTest {
@@ -25,8 +26,12 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void masterSetUp() {
         softAssert = new SoftAssert();
+
         Logs.debug("Inicializando el driver");
         driver = initDriver();
+
+        Logs.debug("Asignando el implicit wait");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         Logs.debug("Asignando el driver al driver provider");
         new DriverProvider().set(driver);
@@ -66,7 +71,7 @@ public class BaseTest {
 
     protected void sleep(int timeSeconds) {
         try {
-            Thread.sleep(timeSeconds * 1000);
+            Thread.sleep(timeSeconds);
         } catch (InterruptedException interruptedException) {
             Logs.error("InterruptedException: %s", interruptedException);
         }
