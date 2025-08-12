@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
-        loginPage.waitPageToLoad();
+        commonFlows.goToLoginPage();
     }
 
     @Test(groups = {regression, smoke})

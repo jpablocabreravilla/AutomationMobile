@@ -6,8 +6,6 @@ import utilities.DriverProvider;
 import utilities.FileManager;
 import utilities.Logs;
 
-import java.io.File;
-
 public class AllureListeners implements TestLifecycleListener {
     @Override
     public void beforeTestStop(TestResult result) {

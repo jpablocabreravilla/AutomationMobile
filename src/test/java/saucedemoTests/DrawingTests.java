@@ -77,4 +77,12 @@ public class DrawingTests extends BaseTest {
         Logs.info("Esperando para ver el dibujo");
         sleep(5000);
     }
+
+    private void sleep(int timeSeconds) {
+        try {
+            Thread.sleep(timeSeconds);
+        } catch (InterruptedException interruptedException) {
+            Logs.error("InterruptedException: %s", interruptedException);
+        }
+    }
 }

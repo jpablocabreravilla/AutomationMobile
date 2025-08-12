@@ -7,7 +7,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -16,15 +15,13 @@ import java.net.URL;
 @Listeners({TestListeners.class, SuiteListeners.class})
 public class BaseTest {
 
-    protected SoftAssert softAssert;
     protected final String regression = "regression";
     protected final String smoke = "smoke";
     protected AndroidDriver driver;
+    protected final CommonFlows commonFlows = new CommonFlows();
 
     @BeforeMethod(alwaysRun = true)
     public void masterSetUp() {
-        softAssert = new SoftAssert();
-
         Logs.debug("Inicializando el driver");
         driver = initDriver();
 
@@ -60,16 +57,6 @@ public class BaseTest {
         desiredCapabilities.setCapability("appium:platformName", "android");
         desiredCapabilities.setCapability("appium:automationName", "uiautomator2");
         desiredCapabilities.setCapability("appium:app", fileAPK.getAbsolutePath());
-
         return desiredCapabilities;
     }
-
-    protected void sleep(int timeSeconds) {
-        try {
-            Thread.sleep(timeSeconds);
-        } catch (InterruptedException interruptedException) {
-            Logs.error("InterruptedException: %s", interruptedException);
-        }
-    }
-
 }
