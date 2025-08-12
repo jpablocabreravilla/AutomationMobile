@@ -3,7 +3,6 @@ package utilities;
 import io.appium.java_client.android.AndroidDriver;
 import listeners.SuiteListeners;
 import listeners.TestListeners;
-import org.openqa.selenium.bidi.log.Log;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +12,6 @@ import org.testng.asserts.SoftAssert;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 
 @Listeners({TestListeners.class, SuiteListeners.class})
 public class BaseTest {
@@ -29,9 +27,6 @@ public class BaseTest {
 
         Logs.debug("Inicializando el driver");
         driver = initDriver();
-
-        Logs.debug("Asignando el implicit wait");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         Logs.debug("Asignando el driver al driver provider");
         new DriverProvider().set(driver);
