@@ -11,6 +11,8 @@ public class ShoppingPage extends BasePage {
     private final By filterButton = AppiumBy.accessibilityId("test-Modal Selector Button");
     private final By toggleViewButton = AppiumBy.accessibilityId("test-Toggle");
     private final By itemList = AppiumBy.accessibilityId("test-PRODUCTS");
+    private final By imageList = AppiumBy.androidUIAutomator(
+            "description(\"test-Item\").childSelector(className(\"android.widget.ImageView\"))");
 
     @Override
     @Step("Esperando que la pagina de Shopping cargue")
@@ -28,4 +30,11 @@ public class ShoppingPage extends BasePage {
         softAssert.assertTrue(find(itemList).isDisplayed());
         softAssert.assertAll();
     }
+
+    @Step("Haciendo click en la imagen del item segun su index")
+    public void clickItemImage(int index) {
+        Logs.info("Haciendo click en la imagen del item segun su index");
+        findAll(imageList).get(index).click();
+    }
+
 }

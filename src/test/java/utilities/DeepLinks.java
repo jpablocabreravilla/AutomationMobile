@@ -1,12 +1,12 @@
 package utilities;
 
-public class Deeplinks {
+public class DeepLinks {
 
+    private static final String completeCheckout = "swaglabs://complete";
+    private static final String itemDetail = "swaglabs://swag-item/%d";
     private static final String webView = "swaglabs://webview";
     private static final String yourCart = "swaglabs://cart/%s";
     private static final String shopping = "swaglabs://swag-overview/%s";
-    private static final String completeCheckout = "swaglabs://checkout-complete";
-    private static final String itemDetail = "swaglabs://inventory-item/%s";
 
     private static void goTo(String deepLink) {
         new DriverProvider().get().get(deepLink);
