@@ -1,5 +1,6 @@
 package utilities;
 
+import data.DataGiver;
 import pages.*;
 
 import java.util.List;
@@ -11,7 +12,11 @@ public class CommonFlows {
 
     public void goToShoppingPage() {
         goToLoginPage();
-        new LoginPage().fillData("standard_user", "secret_sauce");
+
+        final var validCredentials = DataGiver.getValidCredentials();
+        new LoginPage().fillData(validCredentials.getUsername(), validCredentials.getPassword());
+        //new LoginPage().fillData("standard_user", "secret_sauce");
+
         new ShoppingPage().waitPageToLoad();
     }
 

@@ -1,5 +1,7 @@
 package saucedemoTests;
 
+import data.CustomDataProviders;
+import data.DataGiver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -17,14 +19,18 @@ public class LoginTests extends BaseTest {
     }
 
     @Test(groups = {regression, smoke})
-    public void blockedCredentialsTest() {
-        loginPage.fillData("locked_out_user", "secret_sauce");
-        loginPage.verifyErrorMessage("Sorry, this user has been locked out.");
-    }
-
-    @Test(groups = {regression, smoke})
     public void verifyUITest() {
         loginPage.verifyPage();
+    }
+
+    @Test(
+            groups = {regression, smoke},
+            dataProviderClass = CustomDataProviders.class,
+            dataProvider = CustomDataProviders.DP_CREDENTIALS
+    )
+    public void credentialsTest(String username, String password, String message) {
+        loginPage.fillData(username, password);
+        loginPage.verifyErrorMessage(message);
     }
 
     @Test(groups = {regression})
