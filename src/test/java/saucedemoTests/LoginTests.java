@@ -1,7 +1,6 @@
 package saucedemoTests;
 
 import data.CustomDataProviders;
-import data.DataGiver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
