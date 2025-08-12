@@ -4,16 +4,21 @@ import io.appium.java_client.AppiumBy;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import utilities.BasePage;
+import utilities.Gestures;
 import utilities.Logs;
 
 public class LoginPage extends BasePage {
 
     private final By usernameInput = AppiumBy.accessibilityId("test-Username");
     private final By passwordInput = AppiumBy.accessibilityId("test-Password");
-    private final By loginButton   = AppiumBy.accessibilityId("test-LOGIN");
-    private final By errorMessage  = AppiumBy.androidUIAutomator(
-            "description(\"test-Error message\").childSelector(className(\"android.widget.TextView\"))"
-    );
+    private final By loginButton = AppiumBy.accessibilityId("test-LOGIN");
+    private final By errorMessage = AppiumBy.androidUIAutomator(
+            "description(\"test-Error message\").childSelector(className(\"android.widget.TextView\"))");
+    private final By standardUserLabel = AppiumBy.accessibilityId("test-standard_user");
+    private final By lockedUserLabel = AppiumBy.accessibilityId("test-locked_out_user");
+    private final By problemUserLabel = AppiumBy.accessibilityId("test-problem_user");
+    private final By passwordLabel = AppiumBy.androidUIAutomator("text(\"secret_sauce\")");
+    private final By mainCanvas = AppiumBy.id("android:id/content");
 
     @Override
     @Step("Esperando que cargue la pagina de Login")
@@ -42,6 +47,15 @@ public class LoginPage extends BasePage {
         find(loginButton).click();
     }
 
+    @Step("Rellenando formulario login con tap")
+    public void fillDataTap() {
+        Logs.info("Haciendo tap en el label de standard_user");
+        Gestures.tap(find(standardUserLabel));
+
+        Logs.info("Haciendo click en login");
+        find(loginButton).click();
+    }
+
     @Step("Verificando el mensaje de error")
     public void verifyErrorMessage(String errorText) {
         Logs.info("Esperando que el mensaje de error aparezca");
@@ -52,4 +66,17 @@ public class LoginPage extends BasePage {
         softAssert.assertEquals(errorMessageElement.getText(), errorText);
         softAssert.assertAll();
     }
+
+    @Step("Verificando los labels de credenciales")
+    public void verifyLabels() {
+        Logs.info("Verificando los labels de credenciales");
+        Gestures.swipeVertical(50, 50, 20, find(mainCanvas));
+
+        softAssert.assertTrue(find(standardUserLabel).isDisplayed());
+        softAssert.assertTrue(find(lockedUserLabel).isDisplayed());
+        softAssert.assertTrue(find(problemUserLabel).isDisplayed());
+        softAssert.assertTrue(find(passwordLabel).isDisplayed());
+        softAssert.assertAll();
+    }
+
 }

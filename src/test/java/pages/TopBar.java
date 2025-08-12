@@ -9,6 +9,7 @@ import utilities.Logs;
 
 public class TopBar extends BasePage {
     private final By burgerButton = AppiumBy.accessibilityId("test-Menu");
+    private final By checkoutButton = AppiumBy.accessibilityId("test-Cart");
     private final By itemCartCountLabel = AppiumBy.androidUIAutomator(
             "description(\"test-Cart\").childSelector(className(\"android.widget.TextView\"))");
 
@@ -34,6 +35,12 @@ public class TopBar extends BasePage {
     public void verifyItemCount(int expected) {
         Logs.info("Verificando la cantidad de items en el carrito: %d", expected);
         Assert.assertEquals(Integer.parseInt(find(itemCartCountLabel).getText()), expected);
+    }
+
+    @Step("Haciendo click en checkout")
+    public void clickCheckout() {
+        Logs.info("Haciendo click en checkout");
+        find(checkoutButton).click();
     }
 
 }
