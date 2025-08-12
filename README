@@ -1,0 +1,22 @@
+## 🧪 Jpcv_AutomationMobile
+
+Proyecto de automatización de pruebas móviles usando
+**Java**, **Appium**, **Selenium**, **TestNG**, **Allure** y **Page Object Model (POM)**.
+
+## 🚀 Tecnologías utilizadas
+
+- Java 17
+- Appium Java Client
+- Selenium 4
+- TestNG
+- Maven
+- Allure Report
+- SLF4J + Log4j2 (logger personalizado)
+- Page Object Model (POM)
+
+## ✅ Comandos .sh
+./mvnw clean test -Dgroups="regression"
+./mvnw clean test -Dgroups="smoke"
+./mvnw allure:serve
+
+> Nota: Debes tener ejecutándose el servidor de Appium y el emulador/dispositivo antes de correr las pruebas.
