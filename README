@@ -18,4 +18,5 @@ Proyecto de automatización de pruebas móviles usando
 ./mvnw clean test -Dgroups="smoke"
 ./mvnw allure:serve
 
-> Nota: Debes tener ejecutándose el servidor de Appium y el emulador/dispositivo antes de correr las pruebas.
+> Nota: 
+Ejecutar el servidor de Appium y el emulador/dispositivo antes de correr las pruebas!
