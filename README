@@ -1,10 +1,9 @@
 ## 🧪 Jpcv_AutomationMobile
 
 Proyecto de automatización de pruebas móviles usando
-**Java**, **Appium**, **Selenium**, **TestNG**, **Allure** y **Page Object Model (POM)**.
+**Java**, **Appium**, **Selenium**, **TestNG**, **Allure** **Page Object Model (POM)**. **Android**
 
 ## 🚀 Tecnologías utilizadas
-
 - Java 17
 - Appium Java Client
 - Selenium 4
